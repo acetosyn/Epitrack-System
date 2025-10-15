@@ -1,0 +1,272 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block breadcrumb %}
+<span class="breadcrumb-item">Dashboard</span>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+     Announcement Bar 
+    <div class="announcement-bar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+            <line x1="12" y1="9" x2="12" y2="13"></line>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <span>System maintenance scheduled for tonight at 11:00 PM. Expected downtime: 30 minutes.</span>
+        <button class="announcement-close">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+
+     Dashboard Header 
+    <div class="dashboard-header">
+        <div class="header-content">
+            <h1 class="dashboard-title">Welcome back, Dr. Olu</h1>
+            <p class="dashboard-subtitle">Here's what's happening with your clinic today</p>
+        </div>
+        <div class="header-actions">
+            <button class="btn btn-secondary" id="refresh-dashboard">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"></polyline>
+                    <polyline points="1 20 1 14 7 14"></polyline>
+                    <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                Refresh
+            </button>
+        </div>
+    </div>
+
+     Quick Stats Cards 
+    <div class="stats-grid">
+        <div class="stat-card stat-primary">
+            <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <p class="stat-label">Today's Requests</p>
+                <h3 class="stat-value" id="stat-requests">24</h3>
+                <p class="stat-change positive">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                    12% from yesterday
+                </p>
+            </div>
+        </div>
+
+        <div class="stat-card stat-warning">
+            <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <p class="stat-label">Low Stock Alerts</p>
+                <h3 class="stat-value" id="stat-low-stock">8</h3>
+                <p class="stat-change negative">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                    3 critical items
+                </p>
+            </div>
+        </div>
+
+        <div class="stat-card stat-success">
+            <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <p class="stat-label">Items Issued Today</p>
+                <h3 class="stat-value" id="stat-issued">156</h3>
+                <p class="stat-change positive">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                    8% from yesterday
+                </p>
+            </div>
+        </div>
+
+        <div class="stat-card stat-info">
+            <div class="stat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <p class="stat-label">Staff Present</p>
+                <h3 class="stat-value" id="stat-attendance">32/35</h3>
+                <p class="stat-change neutral">
+                    91% attendance rate
+                </p>
+            </div>
+        </div>
+    </div>
+
+     Quick Actions 
+    <div class="quick-actions-section">
+        <h2 class="section-title">Quick Actions</h2>
+        <div class="quick-actions-row">
+            <button class="action-btn action-primary">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+                <span>Add Request</span>
+            </button>
+            <button class="action-btn action-success">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 11 12 14 22 4"></polyline>
+                    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                </svg>
+                <span>Receive Item</span>
+            </button>
+            <button class="action-btn action-warning">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+                <span>Issue Out</span>
+            </button>
+            <button class="action-btn action-info">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                <span>Add Item</span>
+            </button>
+        </div>
+    </div>
+
+     Main Content Grid 
+    <div class="dashboard-grid">
+         Recent Requests 
+        <div class="dashboard-card">
+            <div class="card-header">
+                <h3 class="card-title">Recent Requests</h3>
+                <a href="/operations/requests" class="card-link">View all</a>
+            </div>
+            <div class="card-body">
+                <div class="request-list" id="recent-requests">
+                     Populated by JavaScript 
+                </div>
+            </div>
+        </div>
+
+         Low Stock Items 
+        <div class="dashboard-card">
+            <div class="card-header">
+                <h3 class="card-title">Low Stock Alerts</h3>
+                <a href="/inventory/reorder-list" class="card-link">View all</a>
+            </div>
+            <div class="card-body">
+                <div class="stock-list" id="low-stock-items">
+                     Populated by JavaScript 
+                </div>
+            </div>
+        </div>
+
+         Department Overview 
+        <div class="dashboard-card card-wide">
+            <div class="card-header">
+                <h3 class="card-title">Department Overview</h3>
+            </div>
+            <div class="card-body">
+                <div class="department-grid">
+                    <div class="dept-card dept-doctor">
+                        <div class="dept-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h4 class="dept-name">Doctor</h4>
+                        <p class="dept-stat">45 Patients Today</p>
+                        <a href="/doctor" class="dept-link">View details →</a>
+                    </div>
+
+                    <div class="dept-card dept-pharmacy">
+                        <div class="dept-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
+                        </div>
+                        <h4 class="dept-name">Pharmacy</h4>
+                        <p class="dept-stat">234 Items in Stock</p>
+                        <a href="/pharmacy" class="dept-link">View details →</a>
+                    </div>
+
+                    <div class="dept-card dept-inventory">
+                        <div class="dept-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            </svg>
+                        </div>
+                        <h4 class="dept-name">Inventory</h4>
+                        <p class="dept-stat">567 Total Items</p>
+                        <a href="/inventory" class="dept-link">View details →</a>
+                    </div>
+
+                    <div class="dept-card dept-operations">
+                        <div class="dept-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <h4 class="dept-name">Operations</h4>
+                        <p class="dept-stat">18 Pending Requests</p>
+                        <a href="/operations" class="dept-link">View details →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         Expiring Items Alert 
+        <div class="dashboard-card">
+            <div class="card-header">
+                <h3 class="card-title">Expiring Soon</h3>
+                <a href="/inventory/expiring" class="card-link">View all</a>
+            </div>
+            <div class="card-body">
+                <div class="expiring-list" id="expiring-items">
+                     Populated by JavaScript 
+                </div>
+            </div>
+        </div>
+
+         Recent Activity 
+        <div class="dashboard-card">
+            <div class="card-header">
+                <h3 class="card-title">Recent Activity</h3>
+            </div>
+            <div class="card-body">
+                <div class="activity-list" id="recent-activity">
+                     Populated by JavaScript 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/static/js/dashboard.js"></script>
+{% endblock %}

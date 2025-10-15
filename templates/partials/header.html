@@ -1,0 +1,162 @@
+<header class="top-navbar">
+    <div class="navbar-left">
+        <button class="sidebar-toggle" id="sidebar-toggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <div class="logo-section">
+            <img src="/static/images/logo.jpg" alt="Epiconsult Logo" class="logo-img">
+            <div class="logo-text">
+                <h1 class="logo-title">EPITRACK</h1>
+                <p class="logo-subtitle">Epiconsult Clinic & Diagnostics</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="navbar-center">
+        <div class="global-search">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input 
+                type="text" 
+                id="global-search-input" 
+                placeholder="Search across departments... (Press / to focus)"
+                class="search-input"
+            >
+            <kbd class="search-shortcut">/</kbd>
+        </div>
+    </div>
+
+    <div class="navbar-right">
+        <div class="live-timer" id="live-timer">
+            <div class="timer-date" id="timer-date">Loading...</div>
+            <div class="timer-time" id="timer-time">--:--:--</div>
+        </div>
+
+        <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+
+        <button class="notification-btn" id="notification-btn" title="Notifications">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+            <span class="notification-badge">3</span>
+        </button>
+
+        <div class="role-switcher">
+            <button class="role-btn" id="role-btn">
+                <div class="user-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+                <div class="role-info">
+                    <span class="role-name">Admin</span>
+                    <span class="role-subtitle">Dr. Olu</span>
+                </div>
+                <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+            <div class="role-dropdown" id="role-dropdown">
+                <div class="role-option" data-role="admin">
+                    <span class="role-icon">👑</span>
+                    <span>Admin</span>
+                </div>
+                <div class="role-option" data-role="hop">
+                    <span class="role-icon">🏥</span>
+                    <span>HOP</span>
+                </div>
+                <div class="role-option" data-role="doctor">
+                    <span class="role-icon">👨‍⚕️</span>
+                    <span>Doctor</span>
+                </div>
+                <div class="role-option" data-role="pharmacy">
+                    <span class="role-icon">💊</span>
+                    <span>Pharmacy</span>
+                </div>
+                <div class="role-option" data-role="inventory">
+                    <span class="role-icon">📦</span>
+                    <span>Inventory</span>
+                </div>
+                <div class="role-option" data-role="lab">
+                    <span class="role-icon">🔬</span>
+                    <span>Lab</span>
+                </div>
+                <div class="role-option" data-role="staff">
+                    <span class="role-icon">👤</span>
+                    <span>Staff</span>
+                </div>
+                <hr class="dropdown-divider">
+                <div class="role-option logout">
+                    <span class="role-icon">🚪</span>
+                    <span>Logout</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     Notification Drawer 
+    <div class="notification-drawer" id="notification-drawer">
+        <div class="drawer-header">
+            <h3>Notifications</h3>
+            <button class="drawer-close" id="drawer-close">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="drawer-content">
+            <div class="notification-item unread">
+                <div class="notification-icon alert">⚠️</div>
+                <div class="notification-body">
+                    <p class="notification-title">Low Stock Alert</p>
+                    <p class="notification-text">Amatem Softgel is running low (5 units remaining)</p>
+                    <span class="notification-time">2 minutes ago</span>
+                </div>
+            </div>
+            <div class="notification-item unread">
+                <div class="notification-icon success">✓</div>
+                <div class="notification-body">
+                    <p class="notification-title">Request Approved</p>
+                    <p class="notification-text">Your request for Sample Reagent has been approved</p>
+                    <span class="notification-time">15 minutes ago</span>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon info">ℹ️</div>
+                <div class="notification-body">
+                    <p class="notification-title">System Update</p>
+                    <p class="notification-text">EPITRACK will undergo maintenance tonight at 11 PM</p>
+                    <span class="notification-time">1 hour ago</span>
+                </div>
+            </div>
+        </div>
+        <div class="drawer-footer">
+            <button class="btn-text">Mark all as read</button>
+            <button class="btn-text">View all notifications</button>
+        </div>
+    </div>
+</header>

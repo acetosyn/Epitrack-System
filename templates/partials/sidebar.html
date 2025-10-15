@@ -1,0 +1,117 @@
+<aside class="sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+        <a href="/" class="nav-item active" data-page="dashboard">
+            <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span class="nav-text">Dashboard</span>
+        </a>
+
+         Doctor Department 
+        <div class="nav-group">
+            <button class="nav-item nav-parent" data-department="doctor">
+                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span class="nav-text">Doctor</span>
+                <svg class="nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            <div class="nav-submenu">
+                <a href="/doctor/patients" class="nav-subitem">Patients</a>
+                <a href="/doctor/appointments" class="nav-subitem">Appointments</a>
+                <a href="/doctor/prescriptions" class="nav-subitem">Prescriptions</a>
+            </div>
+        </div>
+
+         Pharmacy Department 
+        <div class="nav-group">
+            <button class="nav-item nav-parent" data-department="pharmacy">
+                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                <span class="nav-text">Pharmacy</span>
+                <svg class="nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            <div class="nav-submenu">
+                <a href="/pharmacy/drugs" class="nav-subitem">Drugs</a>
+                <a href="/pharmacy/accessories" class="nav-subitem">Accessories</a>
+                <a href="/pharmacy/dispensing" class="nav-subitem">Dispensing</a>
+            </div>
+        </div>
+
+         Inventory Department 
+        <div class="nav-group">
+            <button class="nav-item nav-parent" data-department="inventory">
+                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+                <span class="nav-text">Inventory</span>
+                <svg class="nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            <div class="nav-submenu">
+                <a href="/inventory/store-items" class="nav-subitem">Store Items</a>
+                <a href="/inventory/reorder-list" class="nav-subitem">Reorder List</a>
+                <a href="/inventory/stock-levels" class="nav-subitem">Stock Levels</a>
+            </div>
+        </div>
+
+         Operations (HOP) Department 
+        <div class="nav-group">
+            <button class="nav-item nav-parent" data-department="operations">
+                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                <span class="nav-text">Operations</span>
+                <svg class="nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            <div class="nav-submenu">
+                <a href="/operations/requests" class="nav-subitem">Requests</a>
+                <a href="/operations/reports" class="nav-subitem">Reports</a>
+                <a href="/operations/attendance" class="nav-subitem">Attendance</a>
+            </div>
+        </div>
+
+         Admin Department 
+        <div class="nav-group">
+            <button class="nav-item nav-parent" data-department="admin">
+                <svg class="nav-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m0 6l4.2 4.2M23 12h-6m-6 0H1m18.2 5.2l-4.2-4.2m0-6l4.2-4.2"></path>
+                </svg>
+                <span class="nav-text">Admin</span>
+                <svg class="nav-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            <div class="nav-submenu">
+                <a href="/admin/users" class="nav-subitem">Users</a>
+                <a href="/admin/settings" class="nav-subitem">Settings</a>
+                <a href="/admin/audit-log" class="nav-subitem">Audit Log</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sidebar-footer">
+        <div class="sidebar-user">
+            <div class="user-avatar-small">DO</div>
+            <div class="user-details">
+                <p class="user-name">Dr. Olu</p>
+                <p class="user-role">Administrator</p>
+            </div>
+        </div>
+    </div>
+</aside>

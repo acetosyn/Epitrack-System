@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}Pharmacy{% endblock %}
+
+{% block breadcrumb %}
+<span class="breadcrumb-item">Dashboard</span>
+<span class="breadcrumb-separator">›</span>
+<span class="breadcrumb-item">Pharmacy</span>
+{% endblock %}
+
+{% block content %}
+<div class="department-container">
+    <div class="department-header">
+        <div class="header-left">
+            <div class="dept-icon-large dept-pharmacy">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+            </div>
+            <div>
+                <h1 class="department-title">Pharmacy Department</h1>
+                <p class="department-subtitle">Manage drugs, accessories, and dispensing</p>
+            </div>
+        </div>
+        <div class="header-right">
+            <button class="btn btn-secondary" id="export-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Export
+            </button>
+            <button class="btn btn-primary" id="add-drug-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Add Drug
+            </button>
+        </div>
+    </div>
+
+     Filter Bar 
+    <div class="filter-bar">
+        <div class="search-box">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" id="pharmacy-search" placeholder="Search drugs, accessories..." class="search-input">
+        </div>
+        <div class="filter-controls">
+            <select class="filter-select" id="category-filter">
+                <option value="">All Categories</option>
+                <option value="drugs">Drugs</option>
+                <option value="accessories">Accessories</option>
+            </select>
+            <select class="filter-select" id="stock-filter">
+                <option value="">All Stock Levels</option>
+                <option value="in-stock">In Stock</option>
+                <option value="low-stock">Low Stock</option>
+                <option value="out-of-stock">Out of Stock</option>
+            </select>
+            <button class="btn-icon" id="filter-drawer-btn" title="More Filters">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+     Items Grid 
+    <div class="items-grid" id="pharmacy-items">
+         Populated by JavaScript 
+    </div>
+
+     Pagination 
+    <div class="pagination">
+        <button class="pagination-btn" id="prev-page" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            Previous
+        </button>
+        <div class="pagination-info">
+            <span id="page-info">Page 1 of 5</span>
+        </div>
+        <button class="pagination-btn" id="next-page">
+            Next
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
+    </div>
+</div>
+
+ Filter Drawer 
+<div class="filter-drawer" id="filter-drawer">
+    <div class="drawer-header">
+        <h3>Advanced Filters</h3>
+        <button class="drawer-close" id="filter-drawer-close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+    </div>
+    <div class="drawer-content">
+        <div class="filter-group">
+            <label>Expiry Date</label>
+            <select class="filter-select">
+                <option value="">All</option>
+                <option value="expiring-soon">Expiring Soon (30 days)</option>
+                <option value="expired">Expired</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Supplier</label>
+            <select class="filter-select">
+                <option value="">All Suppliers</option>
+                <option value="supplier-1">MedSupply Co.</option>
+                <option value="supplier-2">PharmaDirect</option>
+                <option value="supplier-3">HealthCare Supplies</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>Price Range</label>
+            <div class="range-inputs">
+                <input type="number" placeholder="Min" class="form-input">
+                <span>to</span>
+                <input type="number" placeholder="Max" class="form-input">
+            </div>
+        </div>
+    </div>
+    <div class="drawer-footer">
+        <button class="btn btn-secondary">Reset</button>
+        <button class="btn btn-primary">Apply Filters</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/static/data/items.js"></script>
+<script src="/static/js/departments.js"></script>
+{% endblock %}

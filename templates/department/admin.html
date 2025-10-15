@@ -1,0 +1,141 @@
+{% extends "base.html" %}
+
+{% block title %}Admin{% endblock %}
+
+{% block breadcrumb %}
+<span class="breadcrumb-item">Dashboard</span>
+<span class="breadcrumb-separator">›</span>
+<span class="breadcrumb-item">Admin</span>
+{% endblock %}
+
+{% block content %}
+<div class="department-container">
+    <div class="department-header">
+        <div class="header-left">
+            <div class="dept-icon-large dept-admin">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m0 6l4.2 4.2M23 12h-6m-6 0H1m18.2 5.2l-4.2-4.2m0-6l4.2-4.2"></path>
+                </svg>
+            </div>
+            <div>
+                <h1 class="department-title">Administration</h1>
+                <p class="department-subtitle">Manage users, settings, and system configuration</p>
+            </div>
+        </div>
+    </div>
+
+     Admin Tabs 
+    <div class="admin-tabs">
+        <button class="tab-btn active" data-tab="users">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            Users
+        </button>
+        <button class="tab-btn" data-tab="settings">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v6m0 6v6m5.2-13.2l-4.2 4.2m0 6l4.2 4.2M23 12h-6m-6 0H1m18.2 5.2l-4.2-4.2m0-6l4.2-4.2"></path>
+            </svg>
+            Settings
+        </button>
+        <button class="tab-btn" data-tab="audit">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            Audit Log
+        </button>
+    </div>
+
+     Tab Content 
+    <div class="tab-content active" id="users-tab">
+        <div class="tab-header">
+            <h2>User Management</h2>
+            <button class="btn btn-primary" id="add-user-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+                Add User
+            </button>
+        </div>
+        <div class="users-grid" id="users-grid">
+             Populated by JavaScript 
+        </div>
+    </div>
+
+    <div class="tab-content" id="settings-tab">
+        <div class="settings-grid">
+            <div class="settings-card">
+                <h3>General Settings</h3>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <p class="setting-label">Clinic Name</p>
+                        <p class="setting-value">Epiconsult Clinic & Diagnostics</p>
+                    </div>
+                    <button class="btn-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <p class="setting-label">Low Stock Threshold</p>
+                        <p class="setting-value">50 units</p>
+                    </div>
+                    <button class="btn-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="settings-card">
+                <h3>Notification Settings</h3>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <p class="setting-label">Email Notifications</p>
+                        <p class="setting-desc">Receive email alerts for critical events</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <p class="setting-label">Low Stock Alerts</p>
+                        <p class="setting-desc">Get notified when items are running low</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content" id="audit-tab">
+        <div class="audit-log" id="audit-log">
+             Populated by JavaScript 
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/static/data/items.js"></script>
+<script src="/static/js/departments.js"></script>
+{% endblock %}

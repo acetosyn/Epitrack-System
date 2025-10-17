@@ -1,153 +1,101 @@
 {% extends "base.html" %}
-
 {% block title %}Dashboard{% endblock %}
 
+{% block breadcrumb %}
+<span class="breadcrumb-item">Dashboard</span>
+{% endblock %}
+
 {% block content %}
-<div class="dashboard-wrapper">
-  <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="brand">
-        <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Logo" class="sidebar-logo">
-        <h2 class="sidebar-title">
-          <span class="epi">EPI</span><span class="track">TRACK</span>
-        </h2>
-      </div>
-      <button id="sidebarToggle" class="sidebar-toggle">☰</button>
-    </div>
 
-    <ul class="sidebar-menu">
-      <li class="menu-item active"><i class="icon">🏠</i><span>Dashboard</span></li>
-      <li class="menu-item"><i class="icon">🧑‍⚕️</i><span>Doctor</span></li>
-      <li class="menu-item"><i class="icon">💊</i><span>Pharmacy</span></li>
-      <li class="menu-item"><i class="icon">📦</i><span>Inventory</span></li>
-      <li class="menu-item"><i class="icon">🧾</i><span>Operations</span></li>
-      <li class="menu-item"><i class="icon">⚙️</i><span>Settings</span></li>
-      <li class="menu-item logout">
-        <i class="icon">🚪</i>
-        <span><a href="/logout" class="logout-link">Logout</a></span>
-      </li>
-    </ul>
-  </aside>
+<!-- Dashboard Header -->
+<header class="dashboard-header">
+  <div class="header-text">
+    <h1 class="dashboard-title">Welcome, {{ user.username|capitalize }}</h1>
+    <p class="dashboard-subtitle">Empowering healthcare with smart insights.</p>
+  </div>
+</header>
 
-  <!-- Main Content -->
-  <main class="dashboard-main">
-    <header class="dashboard-header">
-      <div class="header-text">
-        <h1 class="dashboard-title">Welcome {{ user.role }}</h1>
-        <p class="dashboard-subtitle">Empowering healthcare with smart insights.</p>
-      </div>
-      <div class="user-info">
-        <span class="user-role">{{ user.username|capitalize }}</span>
-        <a href="/logout" class="logout-btn">Logout</a>
-      </div>
-    </header>
-
-    <!-- Announcement -->
-    <div class="announcement">
-      <span>🔔 System maintenance scheduled tonight at 11:00 PM (Downtime: 30 mins)</span>
-      <button class="close-announcement" onclick="this.parentElement.remove()">×</button>
-    </div>
-
-    <!-- Stats Cards -->
-    <section class="stats-section">
-      <div class="stat-card navy">
-        <h3>Today's Requests</h3>
-        <p class="value">24</p>
-        <small>+12% from yesterday</small>
-      </div>
-      <div class="stat-card red">
-        <h3>Low Stock Alerts</h3>
-        <p class="value">8</p>
-        <small>3 critical items</small>
-      </div>
-      <div class="stat-card green">
-        <h3>Items Issued</h3>
-        <p class="value">156</p>
-        <small>+8% from yesterday</small>
-      </div>
-      <div class="stat-card blue">
-        <h3>Staff Present</h3>
-        <p class="value">32/35</p>
-        <small>91% attendance</small>
-      </div>
-    </section>
-
-    <!-- Quick Actions -->
-    <section class="quick-actions">
-      <h2 class="section-title">Quick Actions</h2>
-      <div class="actions-grid">
-        <button class="action-btn action-primary">
-          ➕<span>Add Request</span>
-        </button>
-        <button class="action-btn action-success">
-          ✅<span>Receive Item</span>
-        </button>
-        <button class="action-btn action-warning">
-          ⚠️<span>Issue Out</span>
-        </button>
-        <button class="action-btn action-info">
-          📦<span>Add Item</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- Dashboard Tiles -->
-    <section class="dashboard-grid">
-      <div class="tile">
-        <i class="tile-icon">📋</i>
-        <h4>Recent Requests</h4>
-        <p>View and manage all recent requests from your department.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">⚠️</i>
-        <h4>Low Stock Alerts</h4>
-        <p>Monitor and reorder low-stock items efficiently.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">🏥</i>
-        <h4>Department Overview</h4>
-        <p>Check current performance and daily summaries per department.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">⏰</i>
-        <h4>Expiring Items</h4>
-        <p>Track items nearing expiry to prevent losses.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">📊</i>
-        <h4>Reports & Analytics</h4>
-        <p>Generate and view insightful reports and KPIs.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">💬</i>
-        <h4>Recent Activity</h4>
-        <p>Track the most recent operations and updates system-wide.</p>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="dashboard-footer">
-      <p>© 2025 Epitrack | Epiconsult Clinic & Diagnostics</p>
-    </footer>
-  </main>
+<!-- Announcement Bar -->
+<div class="announcement">
+  <span>🔔 System maintenance scheduled tonight at 11:00 PM (Downtime: 30 mins)</span>
+  <button class="close-announcement">×</button>
 </div>
 
-<!-- JS -->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const sidebar = document.getElementById("sidebar");
-    const toggle = document.getElementById("sidebarToggle");
+<!-- Stats Overview -->
+<section class="stats-section">
+  <div class="stat-card navy">
+    <h3>Today's Requests</h3>
+    <p class="value">24</p>
+    <small>+12% from yesterday</small>
+  </div>
+  <div class="stat-card red">
+    <h3>Low Stock Alerts</h3>
+    <p class="value">8</p>
+    <small>3 critical items</small>
+  </div>
+  <div class="stat-card green">
+    <h3>Items Issued</h3>
+    <p class="value">156</p>
+    <small>+8% from yesterday</small>
+  </div>
+  <div class="stat-card blue">
+    <h3>Staff Present</h3>
+    <p class="value">32/35</p>
+    <small>91% attendance</small>
+  </div>
+</section>
 
-    toggle.addEventListener("click", () => {
-      sidebar.classList.toggle("collapsed");
-    });
-  });
-</script>
+<!-- Quick Actions -->
+<section class="quick-actions">
+  <h2 class="section-title">Quick Actions</h2>
+  <div class="actions-grid">
+    <button class="action-btn action-primary">➕<span>Add Request</span></button>
+    <button class="action-btn action-success">✅<span>Receive Item</span></button>
+    <button class="action-btn action-warning">⚠️<span>Issue Out</span></button>
+    <button class="action-btn action-info">📦<span>Add Item</span></button>
+  </div>
+</section>
 
+<!-- Loading Placeholder -->
+<section class="loading-skeleton">
+  <div class="skeleton-line"></div>
+  <div class="skeleton-line"></div>
+  <div class="skeleton-block"></div>
+</section>
+
+<!-- Department Overview -->
+<section class="department-overview">
+  <h2 class="section-title">Department Overview</h2>
+  <div class="department-grid">
+    <div class="dept-card dept-doctor">
+      <h4>Doctor</h4>
+      <p>45 Patients Today</p>
+      <a href="/doctor" class="dept-link">View →</a>
+    </div>
+    <div class="dept-card dept-pharmacy">
+      <h4>Pharmacy</h4>
+      <p>234 Items in Stock</p>
+      <a href="/pharmacy" class="dept-link">View →</a>
+    </div>
+    <div class="dept-card dept-inventory">
+      <h4>Inventory</h4>
+      <p>567 Total Items</p>
+      <a href="/inventory" class="dept-link">View →</a>
+    </div>
+    <div class="dept-card dept-operations">
+      <h4>Operations</h4>
+      <p>18 Pending Requests</p>
+      <a href="/operations" class="dept-link">View →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="dashboard-footer">
+  <p>© 2025 Epitrack | Epiconsult Clinic & Diagnostics</p>
+</footer>
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
 {% endblock %}

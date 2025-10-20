@@ -17,12 +17,72 @@
     </div>
 
     <ul class="sidebar-menu">
-      <li class="menu-item active"><i class="icon">🏠</i><span>Dashboard</span></li>
-      <li class="menu-item"><i class="icon">🧑‍⚕️</i><span>Doctor</span></li>
-      <li class="menu-item"><i class="icon">💊</i><span>Pharmacy</span></li>
-      <li class="menu-item"><i class="icon">📦</i><span>Inventory</span></li>
-      <li class="menu-item"><i class="icon">🧾</i><span>Operations</span></li>
-      <li class="menu-item"><i class="icon">⚙️</i><span>Settings</span></li>
+      <!-- Dashboard -->
+      <li class="menu-item active">
+        <i class="icon">🏠</i><span>Dashboard</span>
+      </li>
+
+      <!-- Doctor -->
+      <li class="menu-item has-submenu">
+        <div class="menu-header">
+          <i class="icon">🧑‍⚕️</i><span>Doctor</span><i class="arrow">▸</i>
+        </div>
+        <ul class="submenu">
+          <li><a href="#">Appointments</a></li>
+          <li><a href="#">Patients</a></li>
+          <li><a href="#">Reports</a></li>
+        </ul>
+      </li>
+
+      <!-- Pharmacy -->
+      <li class="menu-item has-submenu">
+        <div class="menu-header">
+          <i class="icon">💊</i><span>Pharmacy</span><i class="arrow">▸</i>
+        </div>
+        <ul class="submenu">
+          <li><a href="#">Drugs</a></li>
+          <li><a href="#">Sales</a></li>
+          <li><a href="#">Reorder List</a></li>
+        </ul>
+      </li>
+
+      <!-- Inventory -->
+      <li class="menu-item has-submenu">
+        <div class="menu-header">
+          <i class="icon">📦</i><span>Inventory</span><i class="arrow">▸</i>
+        </div>
+        <ul class="submenu">
+          <li><a href="#">Stocks</a></li>
+          <li><a href="#">Expiring Items</a></li>
+          <li><a href="#">Transaction Logs</a></li>
+        </ul>
+      </li>
+
+      <!-- Operations -->
+      <li class="menu-item has-submenu">
+        <div class="menu-header">
+          <i class="icon">🧾</i><span>Operations</span><i class="arrow">▸</i>
+        </div>
+        <ul class="submenu">
+          <li><a href="#">Requests</a></li>
+          <li><a href="#">Approvals</a></li>
+          <li><a href="#">Deliveries</a></li>
+        </ul>
+      </li>
+
+      <!-- Settings -->
+      <li class="menu-item has-submenu">
+        <div class="menu-header">
+          <i class="icon">⚙️</i><span>Settings</span><i class="arrow">▸</i>
+        </div>
+        <ul class="submenu">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Roles</a></li>
+          <li><a href="#">Preferences</a></li>
+        </ul>
+      </li>
+
+      <!-- Logout -->
       <li class="menu-item logout">
         <i class="icon">🚪</i>
         <span><a href="/logout" class="logout-link">Logout</a></span>
@@ -46,7 +106,7 @@
     <!-- Announcement -->
     <div class="announcement">
       <span>🔔 System maintenance scheduled tonight at 11:00 PM (Downtime: 30 mins)</span>
-      <button class="close-announcement" onclick="this.parentElement.remove()">×</button>
+      <button class="close-announcement" id="closeAnnouncement">×</button>
     </div>
 
     <!-- Stats Cards -->
@@ -138,16 +198,6 @@
   </main>
 </div>
 
-<!-- JS -->
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const sidebar = document.getElementById("sidebar");
-    const toggle = document.getElementById("sidebarToggle");
-
-    toggle.addEventListener("click", () => {
-      sidebar.classList.toggle("collapsed");
-    });
-  });
-</script>
-
+<!-- External JS -->
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 {% endblock %}

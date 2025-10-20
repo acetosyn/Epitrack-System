@@ -1,89 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}EPITRACK{% endblock %} - Epiconsult Clinic & Diagnostics</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}EPITRACK{% endblock %} - Epiconsult Clinic & Diagnostics</title>
 
-    <!-- ================================
-         🌐 GLOBAL STYLES (Main Layout)
-         ================================= -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main1.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main2.css') }}">
+  <!-- ================================
+       🌐 GLOBAL STYLES
+       ================================= -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main1.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main2.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard2.css') }}">
 
-    <!-- ================================
-         🧩 PAGE-SPECIFIC STYLES
-         ================================= -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard2.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/departments.css') }}">
-
-    <!-- Optional Extra Page Styles -->
-    {% block extra_css %}{% endblock %}
+  {% block extra_css %}{% endblock %}
 </head>
 
 <body>
-    <div class="app-container">
-        {% include 'partials/header.html' %}
-        {% include 'partials/sidebar.html' %}
-        
-        <!-- ================================
-             📄 MAIN CONTENT AREA
-             ================================= -->
-        <main class="main-content">
-            <div class="breadcrumb-container">
-                <nav class="breadcrumb">
-                    {% block breadcrumb %}
-                    <span class="breadcrumb-item">Dashboard</span>
-                    {% endblock %}
-                </nav>
-            </div>
-            
-            <div class="content-wrapper">
-                {% block content %}{% endblock %}
-            </div>
-        </main>
+  <div class="app-container">
+    <!-- ===== Global Sidebar (only one) ===== -->
+    {% include 'partials/sidebar.html' %}
+
+    <!-- ===== Main Wrapper ===== -->
+    <div class="main-wrapper">
+      {% include 'partials/header.html' %}
+
+      <!-- ===== MAIN CONTENT ===== -->
+      <main class="main-content" id="mainContent">
+        <div class="breadcrumb-container">
+          <nav class="breadcrumb">
+            {% block breadcrumb %}
+            <span class="breadcrumb-item">Dashboard</span>
+            {% endblock %}
+          </nav>
+        </div>
+
+        <div class="content-wrapper">
+          {% block content %}{% endblock %}
+        </div>
+      </main>
     </div>
+  </div>
 
-    <!-- ================================
-         🔳 GLOBAL MODALS / COMPONENTS
-         ================================= -->
-    {% include 'partials/modals.html' %}
-    
-    <!-- Toast Container -->
-    <div id="toast-container" class="toast-container"></div>
-    
-    <!-- Floating Action Button -->
-    <button class="fab" id="quick-action-fab" title="Quick Actions">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2">
-            <line x1="12" y1="5" x2="12" y2="19"></line>
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-        </svg>
-    </button>
-    
-    <!-- Scroll to Top -->
-    <button class="scroll-top" id="scroll-top-btn" title="Scroll to Top">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2">
-            <polyline points="18 15 12 9 6 15"></polyline>
-        </svg>
-    </button>
+  <!-- Global Modals & Components -->
+  {% include 'partials/modals.html' %}
+  <div id="toast-container" class="toast-container"></div>
 
-    <!-- Floating Chat Bubble -->
-    <button class="chat-bubble" id="help-chat" title="Help & Support">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
-    </button>
+  <!-- Floating Elements -->
+  <button class="fab" id="quick-action-fab" title="Quick Actions">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2">
+      <line x1="12" y1="5" x2="12" y2="19"></line>
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+    </svg>
+  </button>
 
-    <!-- ================================
-         ⚙️ GLOBAL SCRIPTS
-         ================================= -->
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <button class="scroll-top" id="scroll-top-btn" title="Scroll to Top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
 
-    <!-- Optional Extra Page Scripts -->
-    {% block extra_js %}{% endblock %}
+  <button class="chat-bubble" id="help-chat" title="Help & Support">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+         stroke="currentColor" stroke-width="2">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+    </svg>
+  </button>
+
+  <!-- ================================
+       ⚙️ GLOBAL SCRIPTS
+       ================================= -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+
+  {% block extra_js %}{% endblock %}
 </body>
 </html>

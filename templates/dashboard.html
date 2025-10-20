@@ -1,203 +1,103 @@
 {% extends "base.html" %}
-
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="dashboard-wrapper">
-  <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="brand">
-        <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Logo" class="sidebar-logo">
-        <h2 class="sidebar-title">
-          <span class="epi">EPI</span><span class="track">TRACK</span>
-        </h2>
-      </div>
-      <button id="sidebarToggle" class="sidebar-toggle">☰</button>
+<div class="dashboard-main">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-text">
+      <h1 class="dashboard-title">Welcome {{ user.role }}</h1>
+      <p class="dashboard-subtitle">Empowering healthcare with smart insights.</p>
     </div>
-
-    <ul class="sidebar-menu">
-      <!-- Dashboard -->
-      <li class="menu-item active">
-        <i class="icon">🏠</i><span>Dashboard</span>
-      </li>
-
-      <!-- Doctor -->
-      <li class="menu-item has-submenu">
-        <div class="menu-header">
-          <i class="icon">🧑‍⚕️</i><span>Doctor</span><i class="arrow">▸</i>
-        </div>
-        <ul class="submenu">
-          <li><a href="#">Appointments</a></li>
-          <li><a href="#">Patients</a></li>
-          <li><a href="#">Reports</a></li>
-        </ul>
-      </li>
-
-      <!-- Pharmacy -->
-      <li class="menu-item has-submenu">
-        <div class="menu-header">
-          <i class="icon">💊</i><span>Pharmacy</span><i class="arrow">▸</i>
-        </div>
-        <ul class="submenu">
-          <li><a href="#">Drugs</a></li>
-          <li><a href="#">Sales</a></li>
-          <li><a href="#">Reorder List</a></li>
-        </ul>
-      </li>
-
-      <!-- Inventory -->
-      <li class="menu-item has-submenu">
-        <div class="menu-header">
-          <i class="icon">📦</i><span>Inventory</span><i class="arrow">▸</i>
-        </div>
-        <ul class="submenu">
-          <li><a href="#">Stocks</a></li>
-          <li><a href="#">Expiring Items</a></li>
-          <li><a href="#">Transaction Logs</a></li>
-        </ul>
-      </li>
-
-      <!-- Operations -->
-      <li class="menu-item has-submenu">
-        <div class="menu-header">
-          <i class="icon">🧾</i><span>Operations</span><i class="arrow">▸</i>
-        </div>
-        <ul class="submenu">
-          <li><a href="#">Requests</a></li>
-          <li><a href="#">Approvals</a></li>
-          <li><a href="#">Deliveries</a></li>
-        </ul>
-      </li>
-
-      <!-- Settings -->
-      <li class="menu-item has-submenu">
-        <div class="menu-header">
-          <i class="icon">⚙️</i><span>Settings</span><i class="arrow">▸</i>
-        </div>
-        <ul class="submenu">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Roles</a></li>
-          <li><a href="#">Preferences</a></li>
-        </ul>
-      </li>
-
-      <!-- Logout -->
-      <li class="menu-item logout">
-        <i class="icon">🚪</i>
-        <span><a href="/logout" class="logout-link">Logout</a></span>
-      </li>
-    </ul>
-  </aside>
-
-  <!-- Main Content -->
-  <main class="dashboard-main">
-    <header class="dashboard-header">
-      <div class="header-text">
-        <h1 class="dashboard-title">Welcome {{ user.role }}</h1>
-        <p class="dashboard-subtitle">Empowering healthcare with smart insights.</p>
-      </div>
-      <div class="user-info">
-        <span class="user-role">{{ user.username|capitalize }}</span>
-        <a href="/logout" class="logout-btn">Logout</a>
-      </div>
-    </header>
-
-    <!-- Announcement -->
-    <div class="announcement">
-      <span>🔔 System maintenance scheduled tonight at 11:00 PM (Downtime: 30 mins)</span>
-      <button class="close-announcement" id="closeAnnouncement">×</button>
+    <div class="user-info">
+      <span class="user-role">{{ user.username|capitalize }}</span>
+      <a href="/logout" class="logout-btn">Logout</a>
     </div>
+  </header>
 
-    <!-- Stats Cards -->
-    <section class="stats-section">
-      <div class="stat-card navy">
-        <h3>Today's Requests</h3>
-        <p class="value">24</p>
-        <small>+12% from yesterday</small>
-      </div>
-      <div class="stat-card red">
-        <h3>Low Stock Alerts</h3>
-        <p class="value">8</p>
-        <small>3 critical items</small>
-      </div>
-      <div class="stat-card green">
-        <h3>Items Issued</h3>
-        <p class="value">156</p>
-        <small>+8% from yesterday</small>
-      </div>
-      <div class="stat-card blue">
-        <h3>Staff Present</h3>
-        <p class="value">32/35</p>
-        <small>91% attendance</small>
-      </div>
-    </section>
+  <!-- Announcement -->
+  <div class="announcement">
+    <span>🔔 System maintenance scheduled tonight at 11:00 PM (Downtime: 30 mins)</span>
+    <button class="close-announcement" id="closeAnnouncement">×</button>
+  </div>
 
-    <!-- Quick Actions -->
-    <section class="quick-actions">
-      <h2 class="section-title">Quick Actions</h2>
-      <div class="actions-grid">
-        <button class="action-btn action-primary">
-          ➕<span>Add Request</span>
-        </button>
-        <button class="action-btn action-success">
-          ✅<span>Receive Item</span>
-        </button>
-        <button class="action-btn action-warning">
-          ⚠️<span>Issue Out</span>
-        </button>
-        <button class="action-btn action-info">
-          📦<span>Add Item</span>
-        </button>
-      </div>
-    </section>
+  <!-- Stats Cards -->
+  <section class="stats-section">
+    <div class="stat-card navy">
+      <h3>Today's Requests</h3>
+      <p class="value">24</p>
+      <small>+12% from yesterday</small>
+    </div>
+    <div class="stat-card red">
+      <h3>Low Stock Alerts</h3>
+      <p class="value">8</p>
+      <small>3 critical items</small>
+    </div>
+    <div class="stat-card green">
+      <h3>Items Issued</h3>
+      <p class="value">156</p>
+      <small>+8% from yesterday</small>
+    </div>
+    <div class="stat-card blue">
+      <h3>Staff Present</h3>
+      <p class="value">32/35</p>
+      <small>91% attendance</small>
+    </div>
+  </section>
 
-    <!-- Dashboard Tiles -->
-    <section class="dashboard-grid">
-      <div class="tile">
-        <i class="tile-icon">📋</i>
-        <h4>Recent Requests</h4>
-        <p>View and manage all recent requests from your department.</p>
-      </div>
+  <!-- Quick Actions -->
+  <section class="quick-actions">
+    <h2 class="section-title">Quick Actions</h2>
+    <div class="actions-grid">
+      <button class="action-btn action-primary">➕<span>Add Request</span></button>
+      <button class="action-btn action-success">✅<span>Receive Item</span></button>
+      <button class="action-btn action-warning">⚠️<span>Issue Out</span></button>
+      <button class="action-btn action-info">📦<span>Add Item</span></button>
+    </div>
+  </section>
 
-      <div class="tile">
-        <i class="tile-icon">⚠️</i>
-        <h4>Low Stock Alerts</h4>
-        <p>Monitor and reorder low-stock items efficiently.</p>
-      </div>
+  <!-- Dashboard Tiles -->
+  <section class="dashboard-grid">
+    <div class="tile">
+      <i class="tile-icon">📋</i>
+      <h4>Recent Requests</h4>
+      <p>View and manage all recent requests from your department.</p>
+    </div>
+    <div class="tile">
+      <i class="tile-icon">⚠️</i>
+      <h4>Low Stock Alerts</h4>
+      <p>Monitor and reorder low-stock items efficiently.</p>
+    </div>
+    <div class="tile">
+      <i class="tile-icon">🏥</i>
+      <h4>Department Overview</h4>
+      <p>Check current performance and daily summaries per department.</p>
+    </div>
+    <div class="tile">
+      <i class="tile-icon">⏰</i>
+      <h4>Expiring Items</h4>
+      <p>Track items nearing expiry to prevent losses.</p>
+    </div>
+    <div class="tile">
+      <i class="tile-icon">📊</i>
+      <h4>Reports & Analytics</h4>
+      <p>Generate and view insightful reports and KPIs.</p>
+    </div>
+    <div class="tile">
+      <i class="tile-icon">💬</i>
+      <h4>Recent Activity</h4>
+      <p>Track the most recent operations and updates system-wide.</p>
+    </div>
+  </section>
 
-      <div class="tile">
-        <i class="tile-icon">🏥</i>
-        <h4>Department Overview</h4>
-        <p>Check current performance and daily summaries per department.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">⏰</i>
-        <h4>Expiring Items</h4>
-        <p>Track items nearing expiry to prevent losses.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">📊</i>
-        <h4>Reports & Analytics</h4>
-        <p>Generate and view insightful reports and KPIs.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">💬</i>
-        <h4>Recent Activity</h4>
-        <p>Track the most recent operations and updates system-wide.</p>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="dashboard-footer">
-      <p>© 2025 Epitrack | Epiconsult Clinic & Diagnostics</p>
-    </footer>
-  </main>
+  <!-- Footer -->
+  <footer class="dashboard-footer">
+    <p>© 2025 Epitrack | Epiconsult Clinic & Diagnostics</p>
+  </footer>
 </div>
 
-<!-- External JS -->
+<!-- Page Script -->
+{% block extra_js %}
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
 {% endblock %}

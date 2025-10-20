@@ -1,0 +1,103 @@
+/* ================================================
+   ROLE SWITCHER DROPDOWN FIX (Classic Layout)
+   ================================================ */
+
+.role-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+.role-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  box-shadow: var(--shadow-sm);
+  color: var(--text-primary);
+}
+
+.role-btn:hover {
+  background: var(--bg-secondary);
+}
+
+.role-btn .dropdown-arrow {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  transition: transform 0.3s ease;
+}
+
+.role-btn.active .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.role-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 220px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 0.4rem 0;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.25s ease;
+}
+
+.role-dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.role-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.role-option:hover {
+  background: var(--bg-secondary);
+  color: var(--color-primary);
+}
+
+.role-option.logout {
+  color: var(--color-danger);
+  border-top: 1px solid var(--border-color);
+  margin-top: 0.3rem;
+}
+
+.role-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+}
+
+/* Optional subtle animation for dropdown */
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.role-dropdown.active {
+  animation: dropdownFade 0.25s ease forwards;
+}

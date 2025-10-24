@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}{{ dept.name }} - EPITRACK{% endblock %}
+
+{% block page_title %}{{ dept.name }}{% endblock %}
+
+{% block content %}
+<div class="department-container">
+    <div class="breadcrumb">
+        <a href="/">Dashboard</a>
+        <span>/</span>
+        <span>{{ dept.name }}</span>
+    </div>
+
+    <div class="department-header-section">
+        <h1>{{ dept.name }} Management</h1>
+        <p class="department-description">Manage all {{ dept.name|lower }} operations and activities</p>
+    </div>
+
+    <!-- Updated sub-departments section with improved styling and interactive cards -->
+    <div class="sub-departments-section">
+        <h2 class="section-title">Sub-Departments</h2>
+        <div class="sub-departments-grid">
+            {% for sub_dept in dept.sub_depts %}
+            <a href="/department/{{ dept_id }}/{{ sub_dept|replace(' ', '-')|lower }}" class="sub-dept-card card-interactive">
+                <div class="sub-dept-icon">📋</div>
+                <h3>{{ sub_dept }}</h3>
+                <p>Manage {{ sub_dept|lower }}</p>
+                <div class="sub-dept-arrow">→</div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Enhanced recent activities section with better styling -->
+    <div class="department-content">
+        <h2 class="section-title">Recent Activities</h2>
+        <div class="activity-list">
+            <div class="activity-item">
+                <div class="activity-icon">✓</div>
+                <div class="activity-content">
+                    <p class="activity-title">Activity completed</p>
+                    <p class="activity-time">2 hours ago</p>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">✓</div>
+                <div class="activity-content">
+                    <p class="activity-title">Activity completed</p>
+                    <p class="activity-time">4 hours ago</p>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">✓</div>
+                <div class="activity-content">
+                    <p class="activity-title">Activity completed</p>
+                    <p class="activity-time">1 day ago</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

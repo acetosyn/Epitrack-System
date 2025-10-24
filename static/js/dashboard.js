@@ -1,100 +1,77 @@
-// ===========================================================
-// dashboard2.js — Optimized Sidebar & UI Logic for Dashboard
-// ===========================================================
+// ===== SKELETON LOADER & CONTENT ANIMATION =====
+window.addEventListener("load", () => {
+  const skeletonLoader = document.getElementById("skeletonLoader")
+  const dashboardContent = document.getElementById("dashboardContent")
 
-document.addEventListener("DOMContentLoaded", () => {
-  setupSidebarToggle()
-  setupSubmenuToggle()
-  setupAnnouncementClose()
-  animateStats()
-  console.log("[dashboard2] Initialized")
+  if (skeletonLoader && dashboardContent) {
+    setTimeout(() => {
+      skeletonLoader.style.display = "none"
+      dashboardContent.style.display = "block"
+
+      // Animate stat counters
+      animateCounters()
+    }, 800)
+  }
 })
 
-// ----------------------------
-// Sidebar collapse toggle
-// ----------------------------
-function setupSidebarToggle() {
-  const sidebar = document.getElementById("sidebar")
-  const toggle = document.getElementById("sidebarToggle")
-  if (!sidebar || !toggle) return
+// ===== ANIMATED COUNTERS =====
+function animateCounters() {
+  const counters = document.querySelectorAll(".counter")
 
-  toggle.addEventListener("click", () => {
-    sidebar.classList.toggle("collapsed")
-  })
-}
-
-// ----------------------------
-// Expand / collapse submenus
-// ----------------------------
-function setupSubmenuToggle() {
-  const submenuHeaders = document.querySelectorAll(".menu-item.has-submenu .menu-header")
-
-  submenuHeaders.forEach((header) => {
-    header.addEventListener("click", () => {
-      const parent = header.parentElement
-      const submenu = parent.querySelector(".submenu")
-      const arrow = header.querySelector(".arrow")
-
-      // Collapse others
-      document.querySelectorAll(".menu-item.has-submenu.open").forEach((openItem) => {
-        if (openItem !== parent) {
-          openItem.classList.remove("open")
-          const openArrow = openItem.querySelector(".arrow")
-          if (openArrow) openArrow.textContent = "▸"
-          const openSubmenu = openItem.querySelector(".submenu")
-          if (openSubmenu) openSubmenu.style.maxHeight = null
-        }
-      })
-
-      // Toggle this one
-      parent.classList.toggle("open")
-      if (parent.classList.contains("open")) {
-        submenu.style.maxHeight = submenu.scrollHeight + "px"
-        arrow.textContent = "▾"
-      } else {
-        submenu.style.maxHeight = null
-        arrow.textContent = "▸"
-      }
-    })
-  })
-}
-
-// ----------------------------
-// Close announcement banner
-// ----------------------------
-function setupAnnouncementClose() {
-  const closeBtn = document.getElementById("closeAnnouncement")
-  if (!closeBtn) return
-
-  closeBtn.addEventListener("click", () => {
-    const announcement = closeBtn.parentElement
-    announcement.classList.add("fade-out")
-    setTimeout(() => (announcement.style.display = "none"), 300)
-  })
-}
-
-// ----------------------------
-// Animate number counters
-// ----------------------------
-function animateStats() {
-  const stats = document.querySelectorAll(".stat-card .value")
-
-  stats.forEach((el) => {
-    const val = parseInt(el.textContent)
-    if (isNaN(val)) return
+  counters.forEach((counter) => {
+    const target = Number.parseInt(counter.dataset.target)
+    const duration = 1500
+    const increment = target / (duration / 16)
     let current = 0
-    const duration = 800
-    const steps = 30
-    const increment = val / steps
 
-    const timer = setInterval(() => {
+    const updateCounter = () => {
       current += increment
-      if (current >= val) {
-        el.textContent = val
-        clearInterval(timer)
+      if (current < target) {
+        counter.textContent = Math.floor(current).toLocaleString()
+        requestAnimationFrame(updateCounter)
       } else {
-        el.textContent = Math.floor(current)
+        counter.textContent = target.toLocaleString()
       }
-    }, duration / steps)
+    }
+
+    updateCounter()
   })
 }
+
+// ===== QUICK ACTION BUTTONS =====
+const quickActionBtns = document.querySelectorAll(".quick-action-btn")
+
+function showToast(message, type) {
+  // Implementation of showToast function
+  console.log(`Toast: ${message} (${type})`)
+}
+
+quickActionBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const actionTitle = btn.querySelector("span").textContent
+    showToast(`${actionTitle} initiated successfully`, "success")
+  })
+})
+
+// ===== STAT CARD INTERACTIONS =====
+const statCards = document.querySelectorAll(".stat-card")
+
+statCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    const label = card.querySelector(".stat-label").textContent
+    showToast(`Viewing ${label} details`, "info")
+  })
+})
+
+// ===== DEPARTMENT CARD INTERACTIONS =====
+const departmentCards = document.querySelectorAll(".department-card")
+
+departmentCards.forEach((card) => {
+  card.addEventListener("mouseenter", () => {
+    card.style.transform = "translateY(-6px)"
+  })
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "translateY(0)"
+  })
+})

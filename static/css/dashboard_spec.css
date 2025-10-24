@@ -1,0 +1,181 @@
+/* =====================================================
+   DASHBOARD_SPEC.CSS
+   Departments • Sub-Departments • Activities
+   ===================================================== */
+
+/* ===== DEPARTMENTS OVERVIEW ===== */
+.departments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.department-card {
+  background-color: var(--bg-primary);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.department-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.department-card:hover::before { transform: scaleX(1); }
+
+.department-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-glow);
+  border-color: var(--primary);
+}
+
+.department-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.department-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.department-header svg {
+  color: var(--primary);
+  transition: var(--transition);
+}
+.department-card:hover .department-header svg {
+  transform: translateX(6px);
+}
+
+/* ===== SUB-DEPARTMENTS ===== */
+.sub-departments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.sub-dept-card {
+  background-color: var(--bg-primary);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sub-dept-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.sub-dept-card:hover::before { transform: scaleX(1); }
+
+.sub-dept-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: var(--shadow-glow);
+}
+
+.sub-dept-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+  transition: var(--transition);
+}
+.sub-dept-card:hover .sub-dept-icon {
+  transform: scale(1.2) rotate(10deg);
+}
+
+.sub-dept-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.sub-dept-card p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.sub-dept-arrow {
+  color: var(--primary);
+  font-size: 1.25rem;
+  transition: var(--transition);
+}
+.sub-dept-card:hover .sub-dept-arrow {
+  transform: translateX(6px);
+}
+
+/* ===== ACTIVITY LIST ===== */
+.activity-list {
+  background-color: var(--bg-primary);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.activity-item {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+.activity-item:last-child { border-bottom: none; }
+
+.activity-item:hover {
+  background-color: var(--bg-secondary);
+  margin: 0 -1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(40,167,69,0.2);
+  color: var(--success);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  transition: var(--transition);
+}
+.activity-item:hover .activity-icon { transform: scale(1.1); }
+
+.activity-content { flex: 1; }
+.activity-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+.activity-time {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .departments-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .sub-departments-grid { grid-template-columns: 1fr; }
+}

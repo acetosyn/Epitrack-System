@@ -1,203 +1,136 @@
 {% extends "base.html" %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}Dashboard - EPITRACK{% endblock %}
+
+{% block page_title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="dashboard-wrapper">
-  <!-- Sidebar -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <div class="brand">
-        <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Logo" class="sidebar-logo">
-        <h2 class="sidebar-title">
-          <span class="epi">EPI</span><span class="track">TRACK</span>
-        </h2>
-      </div>
-      <button id="sidebarToggle" class="sidebar-toggle">☰</button>
+<div class="dashboard-container">
+    <!-- Skeleton Loaders (shown initially) -->
+    <div class="skeleton-loader" id="skeletonLoader">
+        <section class="stats-section">
+            <h2 class="section-title">Overview</h2>
+            <div class="stats-grid">
+                {% for i in range(4) %}
+                <div class="stat-card skeleton-card">
+                    <div class="skeleton-icon"></div>
+                    <div class="skeleton-content">
+                        <div class="skeleton-line short"></div>
+                        <div class="skeleton-line long"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
     </div>
 
-    <ul class="sidebar-menu">
-      <!-- Dashboard -->
-      <li class="menu-item active">
-        <i class="icon">🏠</i><span>Dashboard</span>
-      </li>
+    <!-- Actual Content (hidden initially) -->
+    <div class="dashboard-content" id="dashboardContent" style="display: none;">
+        <!-- Stats Cards with Animated Counters -->
+        <section class="stats-section">
+            <h2 class="section-title">Overview</h2>
+            <div class="stats-grid">
+                {% for stat in stats %}
+                <div class="stat-card stat-card-{{ stat.color }} card-interactive" data-value="{{ stat.value|replace(',', '') }}">
+                    {% if stat.ribbon %}<div class="card-ribbon">Important</div>{% endif %}
+                    <div class="stat-icon">
+                        {% if stat.icon == 'users' %}
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        {% elif stat.icon == 'clipboard' %}
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                        </svg>
+                        {% elif stat.icon == 'alert-circle' %}
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        {% elif stat.icon == 'calendar' %}
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        {% endif %}
+                    </div>
+                    <div class="stat-content">
+                        <p class="stat-label">{{ stat.label }}</p>
+                        <p class="stat-value counter" data-target="{{ stat.value|replace(',', '') }}">0</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
 
-      <!-- Doctor -->
-      <li class="menu-item has-submenu">
-        <div class="menu-header">
-          <i class="icon">🧑‍⚕️</i><span>Doctor</span><i class="arrow">▸</i>
-        </div>
-        <ul class="submenu">
-          <li><a href="#">Appointments</a></li>
-          <li><a href="#">Patients</a></li>
-          <li><a href="#">Reports</a></li>
-        </ul>
-      </li>
+        <!-- Quick Actions Toolbar -->
+        <section class="quick-actions-section">
+            <h2 class="section-title">Quick Actions</h2>
+            <div class="quick-actions-grid">
+                {% for action in quick_actions %}
+                <button class="quick-action-btn quick-action-{{ action.color }} floating-btn" onclick="showToast('{{ action.title }} initiated')">
+                    {% if action.icon == 'plus-circle' %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                    </svg>
+                    {% elif action.icon == 'inbox' %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="22 12 18 12 15 21 9 21 6 12 2 12"></polyline>
+                        <path d="M9 11V7a3 3 0 0 1 6 0v4"></path>
+                    </svg>
+                    {% elif action.icon == 'send' %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                    {% elif action.icon == 'package' %}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line>
+                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                    </svg>
+                    {% endif %}
+                    <span>{{ action.title }}</span>
+                </button>
+                {% endfor %}
+            </div>
+        </section>
 
-      <!-- Pharmacy -->
-      <li class="menu-item has-submenu">
-        <div class="menu-header">
-          <i class="icon">💊</i><span>Pharmacy</span><i class="arrow">▸</i>
-        </div>
-        <ul class="submenu">
-          <li><a href="#">Drugs</a></li>
-          <li><a href="#">Sales</a></li>
-          <li><a href="#">Reorder List</a></li>
-        </ul>
-      </li>
-
-      <!-- Inventory -->
-      <li class="menu-item has-submenu">
-        <div class="menu-header">
-          <i class="icon">📦</i><span>Inventory</span><i class="arrow">▸</i>
-        </div>
-        <ul class="submenu">
-          <li><a href="#">Stocks</a></li>
-          <li><a href="#">Expiring Items</a></li>
-          <li><a href="#">Transaction Logs</a></li>
-        </ul>
-      </li>
-
-      <!-- Operations -->
-      <li class="menu-item has-submenu">
-        <div class="menu-header">
-          <i class="icon">🧾</i><span>Operations</span><i class="arrow">▸</i>
-        </div>
-        <ul class="submenu">
-          <li><a href="#">Requests</a></li>
-          <li><a href="#">Approvals</a></li>
-          <li><a href="#">Deliveries</a></li>
-        </ul>
-      </li>
-
-      <!-- Settings -->
-      <li class="menu-item has-submenu">
-        <div class="menu-header">
-          <i class="icon">⚙️</i><span>Settings</span><i class="arrow">▸</i>
-        </div>
-        <ul class="submenu">
-          <li><a href="#">Profile</a></li>
-          <li><a href="#">Roles</a></li>
-          <li><a href="#">Preferences</a></li>
-        </ul>
-      </li>
-
-      <!-- Logout -->
-      <li class="menu-item logout">
-        <i class="icon">🚪</i>
-        <span><a href="/logout" class="logout-link">Logout</a></span>
-      </li>
-    </ul>
-  </aside>
-
-  <!-- Main Content -->
-  <main class="dashboard-main">
-    <header class="dashboard-header">
-      <div class="header-text">
-        <h1 class="dashboard-title">Welcome {{ user.role }}</h1>
-        <p class="dashboard-subtitle">Empowering healthcare with smart insights.</p>
-      </div>
-      <div class="user-info">
-        <span class="user-role">{{ user.username|capitalize }}</span>
-        <a href="/logout" class="logout-btn">Logout</a>
-      </div>
-    </header>
-
-    <!-- Announcement -->
-    <div class="announcement">
-      <span>🔔 System maintenance scheduled tonight at 11:00 PM (Downtime: 30 mins)</span>
-      <button class="close-announcement" id="closeAnnouncement">×</button>
+        <!-- Department Overview -->
+        <section class="departments-overview-section">
+            <h2 class="section-title">Department Overview</h2>
+            <div class="departments-grid">
+                {% for dept_id, dept in departments.items() %}
+                <a href="/department/{{ dept_id }}" class="department-card card-interactive">
+                    <div class="department-header">
+                        <h3>{{ dept.name }}</h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                    <div class="department-sub-depts">
+                        {% for sub_dept in dept.sub_depts %}
+                        <span class="sub-dept-tag">{{ sub_dept }}</span>
+                        {% endfor %}
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </section>
     </div>
-
-    <!-- Stats Cards -->
-    <section class="stats-section">
-      <div class="stat-card navy">
-        <h3>Today's Requests</h3>
-        <p class="value">24</p>
-        <small>+12% from yesterday</small>
-      </div>
-      <div class="stat-card red">
-        <h3>Low Stock Alerts</h3>
-        <p class="value">8</p>
-        <small>3 critical items</small>
-      </div>
-      <div class="stat-card green">
-        <h3>Items Issued</h3>
-        <p class="value">156</p>
-        <small>+8% from yesterday</small>
-      </div>
-      <div class="stat-card blue">
-        <h3>Staff Present</h3>
-        <p class="value">32/35</p>
-        <small>91% attendance</small>
-      </div>
-    </section>
-
-    <!-- Quick Actions -->
-    <section class="quick-actions">
-      <h2 class="section-title">Quick Actions</h2>
-      <div class="actions-grid">
-        <button class="action-btn action-primary">
-          ➕<span>Add Request</span>
-        </button>
-        <button class="action-btn action-success">
-          ✅<span>Receive Item</span>
-        </button>
-        <button class="action-btn action-warning">
-          ⚠️<span>Issue Out</span>
-        </button>
-        <button class="action-btn action-info">
-          📦<span>Add Item</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- Dashboard Tiles -->
-    <section class="dashboard-grid">
-      <div class="tile">
-        <i class="tile-icon">📋</i>
-        <h4>Recent Requests</h4>
-        <p>View and manage all recent requests from your department.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">⚠️</i>
-        <h4>Low Stock Alerts</h4>
-        <p>Monitor and reorder low-stock items efficiently.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">🏥</i>
-        <h4>Department Overview</h4>
-        <p>Check current performance and daily summaries per department.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">⏰</i>
-        <h4>Expiring Items</h4>
-        <p>Track items nearing expiry to prevent losses.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">📊</i>
-        <h4>Reports & Analytics</h4>
-        <p>Generate and view insightful reports and KPIs.</p>
-      </div>
-
-      <div class="tile">
-        <i class="tile-icon">💬</i>
-        <h4>Recent Activity</h4>
-        <p>Track the most recent operations and updates system-wide.</p>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="dashboard-footer">
-      <p>© 2025 Epitrack | Epiconsult Clinic & Diagnostics</p>
-    </footer>
-  </main>
 </div>
+{% endblock %}
 
-<!-- External JS -->
+{% block scripts %}
 <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 {% endblock %}

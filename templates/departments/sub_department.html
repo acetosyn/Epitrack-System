@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}{{ sub_dept }} - EPITRACK{% endblock %}
+
+{% block page_title %}{{ sub_dept }}{% endblock %}
+
+{% block content %}
+<div class="sub-department-container">
+    <div class="breadcrumb">
+        <a href="/">Dashboard</a>
+        <span>/</span>
+        <a href="/department/{{ dept_id }}">{{ dept.name }}</a>
+        <span>/</span>
+        <span>{{ sub_dept }}</span>
+    </div>
+
+    <!-- Enhanced header with improved button styling -->
+    <div class="sub-department-header">
+        <h1>{{ sub_dept }}</h1>
+        <button class="btn btn-primary" onclick="showToast('Add New {{ sub_dept }} initiated', 'success')">+ Add New</button>
+    </div>
+
+    <!-- Improved data table section with better controls -->
+    <div class="data-table-section">
+        <div class="table-controls">
+            <input type="text" placeholder="Search..." class="search-input">
+            <select class="filter-select">
+                <option>All</option>
+                <option>Active</option>
+                <option>Inactive</option>
+            </select>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>#001</td>
+                    <td>Sample Item 1</td>
+                    <td><span class="badge badge-success">Active</span></td>
+                    <td>2024-10-15</td>
+                    <td>
+                        <button class="action-btn" onclick="showToast('Edit initiated', 'info')">Edit</button>
+                        <button class="action-btn delete" onclick="showToast('Item deleted', 'success')">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#002</td>
+                    <td>Sample Item 2</td>
+                    <td><span class="badge badge-warning">Pending</span></td>
+                    <td>2024-10-14</td>
+                    <td>
+                        <button class="action-btn" onclick="showToast('Edit initiated', 'info')">Edit</button>
+                        <button class="action-btn delete" onclick="showToast('Item deleted', 'success')">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>#003</td>
+                    <td>Sample Item 3</td>
+                    <td><span class="badge badge-success">Active</span></td>
+                    <td>2024-10-13</td>
+                    <td>
+                        <button class="action-btn" onclick="showToast('Edit initiated', 'info')">Edit</button>
+                        <button class="action-btn delete" onclick="showToast('Item deleted', 'success')">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

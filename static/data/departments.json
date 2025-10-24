@@ -1,0 +1,27 @@
+{
+  "doctor": {
+    "name": "Doctor",
+    "icon": "stethoscope",
+    "sub_depts": ["Patients", "Appointments", "Prescriptions"]
+  },
+  "pharmacy": {
+    "name": "Pharmacy",
+    "icon": "pill",
+    "sub_depts": ["Drugs", "Accessories", "Dispensing"]
+  },
+  "inventory": {
+    "name": "Inventory",
+    "icon": "boxes",
+    "sub_depts": ["Store Items", "Reorder List", "Stock Levels"]
+  },
+  "operations": {
+    "name": "Operations",
+    "icon": "file-bar-chart",
+    "sub_depts": ["Requests", "Reports", "Attendance"]
+  },
+  "admin": {
+    "name": "Admin",
+    "icon": "settings",
+    "sub_depts": ["Users", "Settings", "Audit Log"]
+  }
+}

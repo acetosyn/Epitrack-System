@@ -1,0 +1,6 @@
+[
+  {"title": "Add Request", "icon": "plus-circle", "color": "blue"},
+  {"title": "Receive Item", "icon": "inbox", "color": "green"},
+  {"title": "Issue Out", "icon": "send", "color": "purple"},
+  {"title": "Add Item", "icon": "package", "color": "orange"}
+]

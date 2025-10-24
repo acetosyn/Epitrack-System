@@ -1,0 +1,7 @@
+[
+  {"id": 1, "name": "Admin User", "role": "Administrator"},
+  {"id": 2, "name": "Dr. Sarah", "role": "Doctor"},
+  {"id": 3, "name": "John HOP", "role": "Head of Pharmacy"},
+  {"id": 4, "name": "Mike Inv", "role": "Inventory Manager"},
+  {"id": 5, "name": "Jane Cash", "role": "Cashier"}
+]

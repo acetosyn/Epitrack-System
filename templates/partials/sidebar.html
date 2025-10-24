@@ -1,4 +1,5 @@
 <aside class="sidebar" id="sidebar">
+<<<<<<< HEAD
   <!-- Sidebar Header -->
   <div class="sidebar-header">
     <div class="brand">
@@ -128,4 +129,96 @@
       </div>
     </div>
   </div>
+=======
+
+    <!-- Header Brand -->
+    <div class="sidebar-header">
+        <div class="brand">
+            <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="EPITRACK Logo" class="sidebar-logo">
+            <h2 class="sidebar-title">
+                <span class="epi">EPI</span><span class="track">TRACK</span>
+            </h2>
+        </div>
+
+        <button id="sidebarToggle" class="sidebar-toggle" title="Collapse Sidebar">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar-nav">
+
+        <!-- Dashboard -->
+        <a href="/" class="nav-item {% if request.path == '/' %}active{% endif %}">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span class="nav-text">Dashboard</span>
+        </a>
+
+        <!-- Departments - Dynamic Rendering -->
+        {% for dept_key, dept in departments.items() %}
+        <div class="nav-group">
+            <button class="nav-item nav-parent" data-toggle="submenu-{{ dept_key }}" title="{{ dept.name }}">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    {{ dept.icon|safe }}
+                </svg>
+                <span class="nav-text">{{ dept.name }}</span>
+                <span class="nav-arrow">▸</span>
+            </button>
+
+            <div id="submenu-{{ dept_key }}" class="nav-submenu">
+                {% for sub in dept.sub_depts %}
+                <a href="/{{ dept_key }}/{{ sub|replace(' ', '-')|lower }}"
+                   class="nav-subitem {% if request.path.startswith('/' ~ dept_key ~ '/' ~ sub|replace(' ', '-')|lower) %}active{% endif %}">
+                    {{ sub }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- Logout -->
+        <a href="/logout" class="nav-item logout">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                <polyline points="16 17 21 12 16 7"></polyline>
+                <line x1="21" y1="12" x2="9" y2="12"></line>
+            </svg>
+            <span class="nav-text">Logout</span>
+        </a>
+
+    </nav>
+
+    <!-- Footer -->
+    <div class="sidebar-footer">
+        <div class="sidebar-user">
+            <div class="user-avatar-small">
+                {{ user.username[:2]|upper }}
+            </div>
+            <div class="user-details">
+                <p class="user-name">{{ user.username|capitalize }}</p>
+                <p class="user-role">{{ user.role }}</p>
+            </div>
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" title="Toggle Light/Dark Mode">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+            </svg>
+        </button>
+    </div>
+
+>>>>>>> tango
 </aside>

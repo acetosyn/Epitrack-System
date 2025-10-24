@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}EPITRACK{% endblock %} - Epiconsult Clinic & Diagnostics</title>
@@ -14,9 +15,19 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard2.css') }}">
 
   {% block extra_css %}{% endblock %}
+=======
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}EPITRACK - Epiconsult Clinic Management{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main1.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/header.css') }}">
+>>>>>>> tango
 </head>
 
 <body>
+<<<<<<< HEAD
   <div class="app-container">
     <!-- ===== Global Sidebar (only one) ===== -->
     {% include 'partials/sidebar.html' %}
@@ -39,9 +50,32 @@
           {% block content %}{% endblock %}
         </div>
       </main>
+=======
+    <!-- Page Transition Loader -->
+    <div class="page-loader" id="pageLoader"></div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        {% include 'partials/sidebar.html' %}
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            {% include 'partials/header.html' %}
+            
+            <!-- Page Content -->
+            <main class="page-content">
+                {% block content %}{% endblock %}
+            </main>
+        </div>
+>>>>>>> tango
     </div>
   </div>
 
+<<<<<<< HEAD
   <!-- Global Modals & Components -->
   {% include 'partials/modals.html' %}
   <div id="toast-container" class="toast-container"></div>
@@ -76,5 +110,12 @@
   <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
 
   {% block extra_js %}{% endblock %}
+=======
+    <!-- Modals -->
+    {% include 'partials/modals.html' %}
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block scripts %}{% endblock %}
+>>>>>>> tango
 </body>
 </html>

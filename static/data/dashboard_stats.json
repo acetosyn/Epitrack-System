@@ -1,0 +1,6 @@
+[
+  {"label": "Total Patients", "value": "1,234", "icon": "users", "color": "blue", "ribbon": false},
+  {"label": "Pending Orders", "value": "45", "icon": "clipboard", "color": "orange", "ribbon": false},
+  {"label": "Low Stock Items", "value": "12", "icon": "alert-circle", "color": "red", "ribbon": true},
+  {"label": "Appointments Today", "value": "28", "icon": "calendar", "color": "green", "ribbon": false}
+]

@@ -1,108 +1,34 @@
-Add Item Modal 
-<div class="modal" id="add-item-modal">
-    <div class="modal-overlay"></div>
+<!-- Notification Modal -->
+<div class="modal" id="notificationModal">
     <div class="modal-content">
         <div class="modal-header">
-            <h2 class="modal-title">Add New Item</h2>
-            <button class="modal-close" data-modal="add-item-modal">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
+            <h2>Notifications</h2>
+            <button class="modal-close" data-modal="notificationModal">&times;</button>
         </div>
         <div class="modal-body">
-            <form class="form" id="add-item-form">
-                <div class="form-group">
-                    <label for="item-name">Item Name</label>
-                    <input type="text" id="item-name" class="form-input" placeholder="Enter item name" required>
+            <div class="notification-item">
+                <div class="notification-icon alert">!</div>
+                <div class="notification-text">
+                    <p class="notification-title">Low Stock Alert</p>
+                    <p class="notification-desc">Paracetamol stock below threshold</p>
+                    <p class="notification-time">5 minutes ago</p>
                 </div>
-                <div class="form-group">
-                    <label for="item-category">Category</label>
-                    <select id="item-category" class="form-select" required>
-                        <option value="">Select category</option>
-                        <option value="drugs">Drugs</option>
-                        <option value="accessories">Accessories</option>
-                        <option value="reagents">Reagents</option>
-                        <option value="equipment">Equipment</option>
-                    </select>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon info">i</div>
+                <div class="notification-text">
+                    <p class="notification-title">New Order Received</p>
+                    <p class="notification-desc">Order #12345 from Supplier ABC</p>
+                    <p class="notification-time">1 hour ago</p>
                 </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="item-quantity">Quantity</label>
-                        <input type="number" id="item-quantity" class="form-input" placeholder="0" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="item-unit">Unit</label>
-                        <input type="text" id="item-unit" class="form-input" placeholder="e.g., boxes, units" required>
-                    </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-icon success">✓</div>
+                <div class="notification-text">
+                    <p class="notification-title">Appointment Confirmed</p>
+                    <p class="notification-desc">Dr. Smith confirmed appointment</p>
+                    <p class="notification-time">2 hours ago</p>
                 </div>
-                <div class="form-group">
-                    <label for="item-supplier">Supplier</label>
-                    <input type="text" id="item-supplier" class="form-input" placeholder="Enter supplier name">
-                </div>
-                <div class="form-group">
-                    <label for="item-notes">Notes</label>
-                    <textarea id="item-notes" class="form-textarea" rows="3" placeholder="Additional notes..."></textarea>
-                </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-secondary" data-modal="add-item-modal">Cancel</button>
-            <button class="btn btn-primary" id="submit-item">Add Item</button>
-        </div>
-    </div>
-</div>
-
- Quick Action Modal 
-<div class="modal" id="quick-action-modal">
-    <div class="modal-overlay"></div>
-    <div class="modal-content modal-sm">
-        <div class="modal-header">
-            <h2 class="modal-title">Quick Actions</h2>
-            <button class="modal-close" data-modal="quick-action-modal">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="quick-actions-grid">
-                <button class="quick-action-card">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="12" y1="18" x2="12" y2="12"></line>
-                        <line x1="9" y1="15" x2="15" y2="15"></line>
-                    </svg>
-                    <span>Add Request</span>
-                </button>
-                <button class="quick-action-card">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                        <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
-                        <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
-                        <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
-                        <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                        <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                    </svg>
-                    <span>Issue Out</span>
-                </button>
-                <button class="quick-action-card">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9 11 12 14 22 4"></polyline>
-                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                    </svg>
-                    <span>Receive Item</span>
-                </button>
-                <button class="quick-action-card">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                    <span>Add Item</span>
-                </button>
             </div>
         </div>
     </div>

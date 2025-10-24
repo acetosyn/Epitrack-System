@@ -6,20 +6,27 @@
   --sidebar-collapsed-width: 78px;
   --navbar-height: 64px;
 
-  --primary: #001f3f;
+  /* Restore original primary color system */
+  --primary: #001f3f;           /* Deep Navy */
   --primary-dark: #001428;
   --primary-light: #003d66;
+
+  /* Accent brand red stays the same */
   --accent: #e60023;
   --accent-light: #ff4444;
+
+  /* System colors */
   --success: #28a745;
   --warning: #ffc107;
   --danger: #dc3545;
   --info: #17a2b8;
 
+  /* Background layers */
   --bg-primary: #ffffff;
   --bg-secondary: #f5f6fa;
   --bg-tertiary: #e9ecef;
 
+  /* Text colors */
   --text-primary: #212529;
   --text-secondary: #6c757d;
   --text-light: #adb5bd;

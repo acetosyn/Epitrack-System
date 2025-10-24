@@ -2,31 +2,31 @@
 //  EPITRACK MAIN APP SCRIPT (Updated for New Header)
 // =========================================================
 
-// ===== SIDEBAR TOGGLE =====
-const sidebarToggle = document.getElementById("sidebar-toggle");
-const sidebarElement = document.getElementById("sidebar");
+// ===========================================
+// SIDEBAR COLLAPSE + SUBMENU EXPAND LOGIC
+// ===========================================
+const sidebar = document.getElementById("sidebar");
+const toggleBtn = document.getElementById("sidebarToggle");
 
-if (sidebarToggle && sidebarElement) {
-  sidebarToggle.addEventListener("click", () => {
-    sidebarElement.classList.toggle("collapsed");
-    localStorage.setItem("sidebarCollapsed", sidebarElement.classList.contains("collapsed"));
+// Collapse Button
+if (toggleBtn && sidebar) {
+  toggleBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("collapsed");
+    localStorage.setItem("sidebarCollapsed", sidebar.classList.contains("collapsed"));
   });
 
-  // Restore saved state
+  // Restore State
   if (localStorage.getItem("sidebarCollapsed") === "true") {
-    sidebarElement.classList.add("collapsed");
+    sidebar.classList.add("collapsed");
   }
 }
 
-// ===== GLOBAL SEARCH SHORTCUT (Press / ) =====
-document.addEventListener("keydown", (e) => {
-  if (e.key === "/") {
-    const searchInput = document.getElementById("global-search-input");
-    if (searchInput) {
-      e.preventDefault();
-      searchInput.focus();
-    }
-  }
+// SUBMENU EXPANSION
+document.querySelectorAll(".nav-parent").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const group = btn.closest(".nav-group");
+    group.classList.toggle("expanded");
+  });
 });
 
 // ===== LIVE DATE & TIME =====
